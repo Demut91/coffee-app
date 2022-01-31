@@ -1,11 +1,9 @@
 import { useState } from "react";
-//import { useHistory } from "react-router";
 import "./LoginPage.css";
 import image from "../../img/logo.png";
+//import axios from "axios";
 
 export const LoginPage = (props) => {
-  // const history = useHistory()
-
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,9 +16,7 @@ export const LoginPage = (props) => {
   };
 
   const handleLogIn = (e) => {
-    
     e.preventDefault();
-    
 
     // if (login === "admin") {
     //   if (password === "123456") setIsAdmin(true);
@@ -35,7 +31,6 @@ export const LoginPage = (props) => {
 
     // setUserName(login);
     // setIsLoggedIn(true);
-    //history.push('/');
   };
 
   const sendingData = async () => {
@@ -50,8 +45,16 @@ export const LoginPage = (props) => {
         password: password,
       }),
     });
-    
+
     console.log(res.status);
+
+    console.log(res);
+    
+    // axios.post(`http://ptsv2.com/t/0rft5-1628159972`, { login: login, password: password} )
+    // .then(res => {
+    //   console.log(res);
+    //   console.log(res.data);
+    // })
   };
 
   return (
@@ -86,7 +89,9 @@ export const LoginPage = (props) => {
           />
         </div>
         <div>
-          <button className="blackBtn" onClick= {handleLogIn}>Войти</button>
+          <button className="blackBtn" onClick={handleLogIn}>
+            Войти
+          </button>
         </div>
       </form>
     </div>
