@@ -19,6 +19,7 @@ function Menu({ menuList, setMenuList }) {
   };
 
   const removeCount = (menuItem) => {
+    
     const exist = menuList.find((x) => x.id === menuItem.id);
     if (exist.count === 0) {
       setMenuList(menuList.filter((x) => x.id !== menuItem.id));
@@ -29,7 +30,6 @@ function Menu({ menuList, setMenuList }) {
         )
       );
      }
-     console.log(menuList)
   };
 
 
