@@ -3,10 +3,16 @@ import "./LoginPage.css";
 import image from "../../img/logo.png";
 import Registration from "./Registration";
 
-export const LoginPage = () => {
+
+export const LoginPage = ( {setIsLoggedIn} ) => {
   const [isNeedRegistration, setIsNeedRegistration] = useState(false);
+
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [IsAdmin, setIsAdmin] = useState(false);
+
+
 
   const handleLoginChange = (e) => {
     setLogin(e.target.value);
@@ -14,19 +20,19 @@ export const LoginPage = () => {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+
   };
 
   const handleLogIn = (e) => {
     e.preventDefault();
-    // if (login === "admin") {
-    //   if (password === "123456") setIsAdmin(true);
-    //   else {
-    //     return false;
-    //   }
-    // }
-
-    // setUserName(login);
-    // setIsLoggedIn(true);
+    if (login === "Admin" && password === "123456") {
+       setIsAdmin(true)}
+      else {
+        return false;
+      }
+    
+     //setUserName(login);
+     setIsLoggedIn(true);
   };
 
   return (
@@ -48,36 +54,40 @@ export const LoginPage = () => {
 
       <img src={image} alt="logo" />
 
-      <form className="loginForm" onSubmit={handleLogIn}>
-        <input
-          className="loginFormInput"
-          type="text"
-          placeholder="Логин"
-          onChange={handleLoginChange}
-          value={login}
-          required
-        />
-
-        <input
-          className="loginFormInput"
-          type="password"
-          placeholder="Пароль"
-          onChange={handlePasswordChange}
-          value={password}
-          required
-        />
-      </form>
-
       {isNeedRegistration ? (
         <Registration
           login={login}
+          handleLogIn={handleLogIn}
+          handleLoginChange={handleLoginChange}
           password={password}
           handlePasswordChange={handlePasswordChange}
         />
       ) : (
-        <button className="blackBtn" onClick={handleLogIn}>
-          Войти
-        </button>
+        <form className="loginForm" onSubmit={handleLogIn}>
+          <div>
+            <input
+              className="loginFormInput"
+              type="text"
+              placeholder="Логин"
+              onChange={handleLoginChange}
+              value={login}
+              required
+            />
+          </div>
+          <div>
+            <input
+              className="loginFormInput"
+              type="password"
+              placeholder="Пароль"
+              onChange={handlePasswordChange}
+              value={password}
+              required
+            />
+          </div>
+          <button className="blackBtn" onClick={handleLogIn}>
+            Войти
+          </button>
+        </form>
       )}
     </div>
   );
