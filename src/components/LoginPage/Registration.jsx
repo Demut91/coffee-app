@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 function Registration({
   login,
@@ -6,31 +7,20 @@ function Registration({
   handlePasswordChange,
   handleLogIn,
   handleLoginChange,
+  Autorisation,
 }) {
-
-
   function sendingRegistrationData() {
-    const url =
-      "https://cors-anywhere.herokuapp.com/185.244.172.108:8080/auth/login";
-      
-     
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-
-    xhr.setRequestHeader("Accept", "application/json");   
-    xhr.setRequestHeader("Content-Type", "application/json");
-    
-
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        console.log(xhr.responseText);
-      }
-    };
-    
-    xhr.send(JSON.stringify({
-      login: login,
-      password: password,
-    }));
+    axios
+      .post(
+        "https://cors-anywhere.herokuapp.com/185.244.172.108:8080/auth/register",
+        {
+          login: login,
+          password: password,
+        }
+      )
+      .then((response) => console.log(response.data.token))
+      .catch((error) => console.log(error));
+    Autorisation();
   }
 
   return (
