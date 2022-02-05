@@ -2,17 +2,14 @@ import { useState } from "react";
 import "./LoginPage.css";
 import image from "../../img/logo.png";
 import Registration from "./Registration";
+import axios from "axios";
 
-
-export const LoginPage = ( {setIsLoggedIn} ) => {
+function LoginPage({ setIsLoggedIn }) {
   const [isNeedRegistration, setIsNeedRegistration] = useState(false);
-
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [IsAdmin, setIsAdmin] = useState(false);
-
-
 
   const handleLoginChange = (e) => {
     setLogin(e.target.value);
@@ -20,20 +17,33 @@ export const LoginPage = ( {setIsLoggedIn} ) => {
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-
   };
 
   const handleLogIn = (e) => {
     e.preventDefault();
-    if (login === "Admin" && password === "123456") {
-       setIsAdmin(true)}
-      else {
-        return false;
-      }
-    
-     //setUserName(login);
-     setIsLoggedIn(true);
+    // if (login === "Admin" && password === "123456") {
+    //    setIsAdmin(true)}
+    //   else {
+    //     return false;
+    //   }
+
+    setIsLoggedIn(true);
+    Autorisation();
   };
+
+  function Autorisation() {
+    axios
+      .post(
+        "https://cors-anywhere.herokuapp.com/185.244.172.108:8080/auth/login",
+        {
+          login: login,
+          password: password,
+        }
+      )
+
+      .then((response) => localStorage.setItem("token", response.data.token))
+      .catch((error) => console.log(error));
+  }
 
   return (
     <div className="mainWindow">
@@ -61,6 +71,7 @@ export const LoginPage = ( {setIsLoggedIn} ) => {
           handleLoginChange={handleLoginChange}
           password={password}
           handlePasswordChange={handlePasswordChange}
+          Autorisation={Autorisation}
         />
       ) : (
         <form className="loginForm" onSubmit={handleLogIn}>
@@ -84,11 +95,11 @@ export const LoginPage = ( {setIsLoggedIn} ) => {
               required
             />
           </div>
-          <button className="blackBtn" onClick={handleLogIn}>
-            Войти
-          </button>
+          <button className="blackBtn">Войти</button>
         </form>
       )}
     </div>
   );
-};
+}
+
+export default LoginPage;

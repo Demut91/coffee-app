@@ -1,11 +1,13 @@
 import './App.css';
-import {LoginPage} from './components/LoginPage/LoginPage';
+import LoginPage from './components/LoginPage/LoginPage';
 import {Routes, Route} from 'react-router-dom';
 import Menu from './components/Menu/Menu';
 import {useState} from 'react';
 import Locations from './components/Locations/Locations';
 
 function App () {
+  const [IsLoggedIn, setIsLoggedIn] = useState (false);
+
   const [menuList, setMenuList] = useState ([
     {
       id: 1,
@@ -50,7 +52,6 @@ function App () {
       count: 0,
     },
   ]);
-  const [IsLoggedIn, setIsLoggedIn] = useState (false);
 
   return (
     <div className="App">
@@ -65,7 +66,7 @@ function App () {
           path="menu"
           element={<Menu menuList={menuList} setMenuList={setMenuList} />}
         />
-        <Route path="/locations" element={<Locations/>} />
+        <Route path="/locations" element={<Locations />} />
       </Routes>
 
     </div>
