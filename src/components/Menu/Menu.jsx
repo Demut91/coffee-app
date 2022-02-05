@@ -36,7 +36,7 @@ function Menu({ menuList, setMenuList }) {
   return (
     <div className="menuWrapper">
       <h1>MENU</h1>
-
+    
       {menuList.map((menuItem) => (
         <div className={"menuItem"} key={uuidv4()}>
           <img className="image" src={menuItem.imageURL} alt="pic" />
@@ -44,8 +44,7 @@ function Menu({ menuList, setMenuList }) {
           <p className="price">{menuItem.price}</p>
           <button onClick={() => removeCount(menuItem)}>-</button>
           <p>{menuItem.count}</p>
-          <button onClick={() => addCount(menuItem)}>+</button>
-          {/* <button onClick={() => console.log(menuList)}>консоль</button> */}
+          <button onClick={() => addCount(menuItem)}>+</button>         
         </div>
       ))}
       <button>Перейти к оплате</button>
