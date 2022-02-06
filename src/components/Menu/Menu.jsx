@@ -1,11 +1,9 @@
 import "./menu.css";
 import { v4 as uuidv4 } from "uuid";
+//import { Navigate as Link } from "react-router";
 
 function Menu({ menuList, setMenuList }) {
-
-
   const addCount = (menuItem) => {
-    
     const exist = menuList.find((x) => x.id === menuItem.id);
     if (exist) {
       setMenuList(
@@ -19,7 +17,6 @@ function Menu({ menuList, setMenuList }) {
   };
 
   const removeCount = (menuItem) => {
-    
     const exist = menuList.find((x) => x.id === menuItem.id);
     if (exist.count === 0) {
       setMenuList(menuList.filter((x) => x.id !== menuItem.id));
@@ -29,14 +26,13 @@ function Menu({ menuList, setMenuList }) {
           x.id === menuItem.id ? { ...exist, count: exist.count - 1 } : x
         )
       );
-     }
+    }
   };
-
-
+  console.log(menuList);
   return (
     <div className="menuWrapper">
       <h1>MENU</h1>
-    
+
       {menuList.map((menuItem) => (
         <div className={"menuItem"} key={uuidv4()}>
           <img className="image" src={menuItem.imageURL} alt="pic" />
@@ -44,10 +40,11 @@ function Menu({ menuList, setMenuList }) {
           <p className="price">{menuItem.price}</p>
           <button onClick={() => removeCount(menuItem)}>-</button>
           <p>{menuItem.count}</p>
-          <button onClick={() => addCount(menuItem)}>+</button>         
+          <button onClick={() => addCount(menuItem)}>+</button>
         </div>
       ))}
-      <button>Перейти к оплате</button>
+
+      {/* <Link to="/payment">Перейти к оплате</Link> */}
     </div>
   );
 }

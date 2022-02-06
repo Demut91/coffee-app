@@ -18,14 +18,19 @@ function Registration({
           password: password,
         }
       )
-      .then((response) => console.log(response.data.token))
+      .then((response) => localStorage.setItem("token", response.data.token))
       .catch((error) => console.log(error));
     Autorisation();
   }
 
+  function handleClick(e) {
+    sendingRegistrationData();
+    handleLogIn(e);
+  }
+
   return (
-    <form className="loginForm" onSubmit={handleLogIn}>
-      <div>
+    <form className="loginForm" onSubmit={handleClick}>
+      <div className="FormInput">
         <input
           className="loginFormInput"
           type="text"
@@ -35,7 +40,7 @@ function Registration({
           required
         />
       </div>
-      <div>
+      <div className="FormInput">
         <input
           className="loginFormInput"
           type="password"
@@ -45,7 +50,7 @@ function Registration({
           required
         />
       </div>
-      <div>
+      <div className="FormInput">
         <input
           className="loginFormInput"
           type="password"
@@ -55,9 +60,7 @@ function Registration({
           required
         />
       </div>
-      <button className="blackBtn" onClick={sendingRegistrationData}>
-        Зарегистрироваться
-      </button>
+      <button className="submitBtn">Войти</button>
     </form>
   );
 }
