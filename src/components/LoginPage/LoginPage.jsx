@@ -3,8 +3,9 @@ import "./LoginPage.css";
 import image from "../../img/logo.png";
 import Registration from "./Registration";
 import axios from "axios";
+import { Navigate } from "react-router";
 
-function LoginPage({ setIsLoggedIn }) {
+function LoginPage({ IsLoggedIn, setIsLoggedIn }) {
   const [isNeedRegistration, setIsNeedRegistration] = useState(false);
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -44,62 +45,65 @@ function LoginPage({ setIsLoggedIn }) {
       .then((response) => localStorage.setItem("token", response.data.token))
       .catch((error) => console.log(error));
   }
+  if (IsLoggedIn) {
+    return <Navigate to="/locations" />;
+  } else {
+    return (
+      <div className="mainWindow">
+        <div className="header">
+          <button
+            onClick={() => setIsNeedRegistration(false)}
+            className="blackBtn"
+          >
+            Вход
+          </button>
+          <button
+            onClick={() => setIsNeedRegistration(true)}
+            className="blackBtn"
+          >
+            Регистрация
+          </button>
+        </div>
 
-  return (
-    <div className="mainWindow">
-      <div className="header">
-        <button
-          onClick={() => setIsNeedRegistration(false)}
-          className="blackBtn"
-        >
-          Вход
-        </button>
-        <button
-          onClick={() => setIsNeedRegistration(true)}
-          className="blackBtn"
-        >
-          Регистрация
-        </button>
+        <img src={image} alt="logo" />
+
+        {isNeedRegistration ? (
+          <Registration
+            login={login}
+            handleLogIn={handleLogIn}
+            handleLoginChange={handleLoginChange}
+            password={password}
+            handlePasswordChange={handlePasswordChange}
+            Autorisation={Autorisation}
+          />
+        ) : (
+          <form className="loginForm" onSubmit={handleLogIn}>
+            <div>
+              <input
+                className="loginFormInput"
+                type="text"
+                placeholder="Логин"
+                onChange={handleLoginChange}
+                value={login}
+                required
+              />
+            </div>
+            <div>
+              <input
+                className="loginFormInput"
+                type="password"
+                placeholder="Пароль"
+                onChange={handlePasswordChange}
+                value={password}
+                required
+              />
+            </div>
+            <button className="blackBtn">Войти</button>
+          </form>
+        )}
       </div>
-
-      <img src={image} alt="logo" />
-
-      {isNeedRegistration ? (
-        <Registration
-          login={login}
-          handleLogIn={handleLogIn}
-          handleLoginChange={handleLoginChange}
-          password={password}
-          handlePasswordChange={handlePasswordChange}
-          Autorisation={Autorisation}
-        />
-      ) : (
-        <form className="loginForm" onSubmit={handleLogIn}>
-          <div>
-            <input
-              className="loginFormInput"
-              type="text"
-              placeholder="Логин"
-              onChange={handleLoginChange}
-              value={login}
-              required
-            />
-          </div>
-          <div>
-            <input
-              className="loginFormInput"
-              type="password"
-              placeholder="Пароль"
-              onChange={handlePasswordChange}
-              value={password}
-              required
-            />
-          </div>
-          <button className="blackBtn">Войти</button>
-        </form>
-      )}
-    </div>
-  );
+    );
+  }
 }
 
 export default LoginPage;
