@@ -1,8 +1,11 @@
 import "./menu.css";
 import { v4 as uuidv4 } from "uuid";
-//import { Navigate as Link } from "react-router";
+import { Navigate } from "react-router";
+import { useState } from "react";
+
 
 function Menu({ menuList, setMenuList }) {
+const [IsReadyToPay, setIsReadyToPay] = useState(false)
   const addCount = (menuItem) => {
     const exist = menuList.find((x) => x.id === menuItem.id);
     if (exist) {
@@ -28,7 +31,11 @@ function Menu({ menuList, setMenuList }) {
       );
     }
   };
-  console.log(menuList);
+  
+  if (IsReadyToPay) {
+    return <Navigate menuList={menuList} addCount={addCount} removeCount={removeCount} to="/payment" />;
+  } else {
+
   return (
     <div className="menuWrapper">
       {menuList.map((menuItem) => (
@@ -75,10 +82,10 @@ function Menu({ menuList, setMenuList }) {
           </div>
         </div>
       ))}
-
-      <button className="paymentBtn">Перейти к оплате</button>
+      <button onClick={() => setIsReadyToPay(true)} className="paymentBtn">Перейти к оплате</button>
     </div>
   );
+      }
 }
 
 export default Menu;

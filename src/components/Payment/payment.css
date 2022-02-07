@@ -1,0 +1,93 @@
+.paymentItem {
+    position: relative;
+    width: 349px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    margin-left: 15px;
+    margin-top: 15px;
+    background-color: #F6E5D1;
+}
+.paymentItemName {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #846340;
+    text-align: left;
+    margin-top: 11.5px;
+    margin-left: 11px;
+    margin-bottom: 0;
+}
+.paymentButtons {    
+    display: flex;
+    height: 30px;
+    padding: 11px 11px 0 11px;    
+}
+.paymentPrice {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #846340;
+}
+
+.paymentCount {
+    margin: 0 7px 0 22px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #846340;
+}
+.paymentBtn {
+    width: 338px;
+    height: 47px;
+    background: #342D1A;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-sizing: border-box;
+    border-radius: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #F6E5D1;
+    margin: 450px 16px 24px 16px;
+}
+
+.paymentButton {
+    display: block;
+    border: none;
+    background-color: #F6E5D1;
+    margin-bottom: -2px;
+}
+.paymentButtonMinus {
+    display: block;
+    border: none;
+    background-color: #F6E5D1;
+    margin-bottom: 10px;
+    position: relative;
+    margin-left: 150px;
+}
+.paymentButton:hover {
+    cursor: pointer;
+}
+.paymentButtonMinus svg {    
+    position: absolute;
+    top: 7px;
+}
+.paymentButton svg:hover {
+    opacity: 0.5;
+}
+.paymentButtonMinus svg:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+.btnGroup {
+    display: flex;
+    position: absolute;
+    top: 27px;
+    right: 18px;
+}

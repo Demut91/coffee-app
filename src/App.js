@@ -8,7 +8,7 @@ import Payment from './components/Payment/Payment';
 
 function App () {
   const [IsLoggedIn, setIsLoggedIn] = useState (false);
-  const [menuList, setMenuList] = useState ([ {id: 1, name: 'Кофе 1', imageURL: 'https://tea.ru/upload/blog/0821/3108/coffee/01.jpg', price: 100, count: 0}, {id: 2, name: 'Кофе 2', imageURL: 'https://www.cre.ru/content/upload/news/15528982809641.jpeg', price: 150, count: 0}, {id: 3, name: 'Кофе 3', imageURL: 'https://ichef.bbci.co.uk/news/640/cpsprodpb/B079/production/_117677154_gettyimages-156586025.jpg', price: 240, count: 0}, ]);
+  const [menuList, setMenuList] = useState ([]);
 
 
   return (
@@ -26,7 +26,7 @@ function App () {
           path="menu"
           element={<Menu menuList={menuList} setMenuList={setMenuList} />}
         />
-        <Route path="payment" element={<Payment />} />
+        <Route path="payment" element={<Payment menuList={menuList}/>} />
         <Route
           path="/locations"
           element={<Locations menuList={menuList} setMenuList={setMenuList} />}
