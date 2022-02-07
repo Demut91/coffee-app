@@ -10,10 +10,8 @@ function App () {
   const [IsLoggedIn, setIsLoggedIn] = useState (false);
   const [menuList, setMenuList] = useState ([]);
 
-
   return (
     <div className="App">
-
       <Routes>
         <Route path="/" element={<Navigate replace to="/loginpage" />} />
         <Route
@@ -26,7 +24,7 @@ function App () {
           path="menu"
           element={<Menu menuList={menuList} setMenuList={setMenuList} />}
         />
-        <Route path="payment" element={<Payment menuList={menuList}/>} />
+        <Route path="payment" element={<Payment menuList={menuList} />} />
         <Route
           path="/locations"
           element={<Locations menuList={menuList} setMenuList={setMenuList} />}

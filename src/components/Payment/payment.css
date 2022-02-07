@@ -54,9 +54,27 @@
     line-height: 21px;
     text-align: center;
     color: #F6E5D1;
-    margin: 450px 16px 24px 16px;
+    margin: 450px 16px 16px 16px;
 }
-
+.paymentBack {
+    width: 338px;
+    height: 47px;
+    background: #342D1A;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-sizing: border-box;
+    border-radius: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    color: #F6E5D1;
+    margin: 0 16px 16px 16px;
+}
+.paymentBack:hover {
+    cursor: pointer;
+    box-shadow: none;
+}
 .paymentButton {
     display: block;
     border: none;

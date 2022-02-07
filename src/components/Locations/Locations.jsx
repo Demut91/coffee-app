@@ -33,9 +33,9 @@ function Locations({ menuList, setMenuList }) {
       axios.get(
         "https://cors-anywhere.herokuapp.com/185.244.172.108:8080/locations"
       )
-    ).then((response) => {
+    .then((response) => {
       setLocations(response.data);
-    });
+    }));
   }, [setLocations]);
 
   return (
