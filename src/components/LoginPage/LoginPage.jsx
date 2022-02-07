@@ -9,8 +9,8 @@ function LoginPage({ IsLoggedIn, setIsLoggedIn }) {
   const [isNeedRegistration, setIsNeedRegistration] = useState(false);
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  // eslint-disable-next-line no-unused-vars
-  const [IsAdmin, setIsAdmin] = useState(false);
+
+  //const [IsAdmin, setIsAdmin] = useState(false);
 
   const handleLoginChange = (e) => {
     setLogin(e.target.value);
@@ -27,8 +27,6 @@ function LoginPage({ IsLoggedIn, setIsLoggedIn }) {
     //   else {
     //     return false;
     //   }
-
-    setIsLoggedIn(true);
     Autorisation();
   };
 
@@ -41,10 +39,11 @@ function LoginPage({ IsLoggedIn, setIsLoggedIn }) {
           password: password,
         }
       )
-
       .then((response) => localStorage.setItem("token", response.data.token))
       .catch((error) => console.log(error));
+    setIsLoggedIn(true);
   }
+
   if (IsLoggedIn) {
     return <Navigate to="/locations" />;
   } else {
@@ -53,54 +52,53 @@ function LoginPage({ IsLoggedIn, setIsLoggedIn }) {
         <div className="header">
           <button
             onClick={() => setIsNeedRegistration(false)}
-            className="blackBtn"
+            className="headerBtn"
           >
             Вход
           </button>
           <button
             onClick={() => setIsNeedRegistration(true)}
-            className="blackBtn"
+            className="headerBtn"
           >
             Регистрация
           </button>
         </div>
+        <div className="container">
+          <img src={image} alt="logo" />
 
-        <img src={image} alt="logo" />
-
-        {isNeedRegistration ? (
-          <Registration
-            login={login}
-            handleLogIn={handleLogIn}
-            handleLoginChange={handleLoginChange}
-            password={password}
-            handlePasswordChange={handlePasswordChange}
-            Autorisation={Autorisation}
-          />
-        ) : (
-          <form className="loginForm" onSubmit={handleLogIn}>
-            <div>
-              <input
-                className="loginFormInput"
-                type="text"
-                placeholder="Логин"
-                onChange={handleLoginChange}
-                value={login}
-                required
-              />
-            </div>
-            <div>
-              <input
-                className="loginFormInput"
-                type="password"
-                placeholder="Пароль"
-                onChange={handlePasswordChange}
-                value={password}
-                required
-              />
-            </div>
-            <button className="blackBtn">Войти</button>
-          </form>
-        )}
+          {isNeedRegistration ? (
+            <Registration
+              login={login}
+              handleLogIn={handleLogIn}
+              handleLoginChange={handleLoginChange}
+              password={password}
+              handlePasswordChange={handlePasswordChange}
+              Autorisation={Autorisation}
+            />
+          ) : (
+            <form className="loginForm" onSubmit={handleLogIn}>
+              <div className="FormInput">
+                <input
+                  required
+                  type="text"
+                  placeholder="Логин"
+                  onChange={handleLoginChange}
+                  value={login}
+                />
+              </div>
+              <div className="FormInput">
+                <input
+                  required
+                  type="password"
+                  placeholder="Пароль"
+                  onChange={handlePasswordChange}
+                  value={password}
+                />
+              </div>
+              <button className="submitBtn">Войти</button>
+            </form>
+          )}
+        </div>
       </div>
     );
   }

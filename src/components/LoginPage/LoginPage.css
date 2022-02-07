@@ -1,5 +1,74 @@
+@font-face {
+    font-family: 'Inter';
+    src: url(../../../public/fonts/Inter.ttf);
+}
+
+@font-face {
+    font-family: 'Roboto-bold';
+    src: url(../../../public/fonts/Roboto-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(../../../public/fonts/Roboto-Regular.ttf);
+}
+
 .mainWindow {
+    background-color: #ffffff;
     width: 407px;
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 1px solid #263238;
+    border-radius: 4px;
+    box-shadow: 0px 3px 6px #263238, 0px 4px 8px #263238, 0px 1px 12px #263238;
+}
+.header {
+    background-color: #263238;
+    display: flex;
+    padding: 4px 3px;
+}
+.headerBtn {
+    padding: 2px;
+    border: none;
+    flex-basis: 50%;
+    background-color: #263238;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-style: Medium;
+    font-size: 12px;
+    line-height: 16px;
+    border-radius: 6px;
+}
+.headerBtn:hover {
+    cursor: pointer;
+    background-color: #979797;
+}
+.container {
+    padding: 22px 32px 19px 32px;
+}
+.FormInput Input {
+    background: rgba(118, 118, 128, 0.12);
+    border-radius: 10px;
+    border: none;
+    margin-top: 12px;
+    width: 93%;
+    padding: 10px 12px;
+}
+.submitBtn {
+    color: #ffffff;
+    padding: 6px 8px;
+    width: 158px;
+    margin-top: 15px;
+    background-color: #636366;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    border: none;
+    font-size: 15px;
+    line-height: 20px;
+    border-radius: 7px;
+    font-family: 'Roboto', sans-serif;
+    font-style: Medium;
+    box-shadow: 0px 3px 7px 0px rgba(33, 33, 33, 0.34);
+}
+.submitBtn:hover {
+    cursor: pointer;
+    box-shadow: none;
 }
