@@ -1,4 +1,4 @@
-.locationsContainer {
+.locationsContainer {   
     display: flex;
     flex-wrap: wrap;
 }
