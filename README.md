@@ -1,3 +1,6 @@
+Для запросов на сервер без блокировки CORS нужно активировать доступ по этой ссылке:
+https://cors-anywhere.herokuapp.com/corsdemo
+
 ## Available Scripts
 
 In the project directory, you can run:
