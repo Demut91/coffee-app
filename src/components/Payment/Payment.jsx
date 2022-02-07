@@ -2,7 +2,14 @@ import React from "react";
 import "./payment.css";
 import { v4 as uuidv4 } from "uuid";
 
-function Payment({ menuList, addCount, removeCount }) {
+function Payment({ menuList, addCount, removeCount, setIsReadyToPay }) {
+
+  const sumMenuList = menuList.map((item) => {
+    item.sum = item.price*item.count;
+    return item;
+  });
+let sum = sumMenuList.reduce((prev,next) => prev + next.sum, 0)
+
   return (
     <div className="menuWrapper">
       {menuList.map((menuItem) => (
@@ -50,12 +57,13 @@ function Payment({ menuList, addCount, removeCount }) {
                 ></path>
               </svg>
             </button>
+
            </div>
           </div>
         </div>
       ))}
-
-      <button className="paymentBtn">Назад</button>
+<button className="paymentBtn">Оплатить {sum} руб</button>
+      <button onClick={() => setIsReadyToPay(false)} className="paymentBack">Назад</button>
     </div>
   );
 }

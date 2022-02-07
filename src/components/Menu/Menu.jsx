@@ -1,11 +1,10 @@
 import "./menu.css";
 import { v4 as uuidv4 } from "uuid";
-import { Navigate } from "react-router";
 import { useState } from "react";
-
+import Payment from "../Payment/Payment";
 
 function Menu({ menuList, setMenuList }) {
-const [IsReadyToPay, setIsReadyToPay] = useState(false)
+  const [IsReadyToPay, setIsReadyToPay] = useState(false);
   const addCount = (menuItem) => {
     const exist = menuList.find((x) => x.id === menuItem.id);
     if (exist) {
@@ -31,61 +30,72 @@ const [IsReadyToPay, setIsReadyToPay] = useState(false)
       );
     }
   };
-  
-  if (IsReadyToPay) {
-    return <Navigate menuList={menuList} addCount={addCount} removeCount={removeCount} to="/payment" />;
-  } else {
 
-  return (
-    <div className="menuWrapper">
-      {menuList.map((menuItem) => (
-        <div className="menuItem" key={uuidv4()}>
-          <div className="imgContainer">
-            <img src={menuItem.imageURL} alt="pic" />
-          </div>
-          <p className="menuItemName">{menuItem.name}</p>
-          <div className="menuButtons">
-            <p className="menuPrice">{menuItem.price} руб</p>
-            <button className="menuButtonMinus" onClick={() => removeCount(menuItem)}>
-              <svg
-                width="14"
-                height="2"
-                viewBox="0 0 14 2"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+  if (IsReadyToPay) {
+    return (
+      <Payment
+        menuList={menuList}
+        addCount={addCount}
+        removeCount={removeCount}
+        setIsReadyToPay={setIsReadyToPay}
+      />
+    );
+  } else {
+    return (
+      <div className="menuWrapper">
+        {menuList.map((menuItem) => (
+          <div className="menuItem" key={uuidv4()}>
+            <div className="imgContainer">
+              <img src={menuItem.imageURL} alt="pic" />
+            </div>
+            <p className="menuItemName">{menuItem.name}</p>
+            <div className="menuButtons">
+              <p className="menuPrice">{menuItem.price} руб</p>
+              <button
+                className="menuButtonMinus"
+                onClick={() => removeCount(menuItem)}
               >
-                <path
-                  d="M13 1H1"
-                  stroke="#F6E5D1"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                ></path>
-              </svg>
-            </button>
-            <p className="menuCount">{menuItem.count}</p>
-            <button className="menuButton" onClick={() => addCount(menuItem)}>
-              <svg
-                width="13"
-                height="12"
-                viewBox="0 0 13 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M7 6H1M7 12V6V12ZM7 6V0V6ZM7 6H13H7Z"
-                  stroke="#F6E5D1"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                ></path>
-              </svg>
-            </button>
+                <svg
+                  width="14"
+                  height="2"
+                  viewBox="0 0 14 2"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13 1H1"
+                    stroke="#F6E5D1"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  ></path>
+                </svg>
+              </button>
+              <p className="menuCount">{menuItem.count}</p>
+              <button className="menuButton" onClick={() => addCount(menuItem)}>
+                <svg
+                  width="13"
+                  height="12"
+                  viewBox="0 0 13 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 6H1M7 12V6V12ZM7 6V0V6ZM7 6H13H7Z"
+                    stroke="#F6E5D1"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  ></path>
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
-      <button onClick={() => setIsReadyToPay(true)} className="paymentBtn">Перейти к оплате</button>
-    </div>
-  );
-      }
+        ))}
+        <button onClick={() => setIsReadyToPay(true)} className="paymentBtn">
+          Перейти к оплате
+        </button>
+      </div>
+    );
+  }
 }
 
 export default Menu;
