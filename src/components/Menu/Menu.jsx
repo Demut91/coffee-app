@@ -31,20 +31,52 @@ function Menu({ menuList, setMenuList }) {
   console.log(menuList);
   return (
     <div className="menuWrapper">
-      <h1>MENU</h1>
-
       {menuList.map((menuItem) => (
-        <div className={"menuItem"} key={uuidv4()}>
-          <img className="image" src={menuItem.imageURL} alt="pic" />
-          <p className="name">{menuItem.name}</p>
-          <p className="price">{menuItem.price}</p>
-          <button onClick={() => removeCount(menuItem)}>-</button>
-          <p>{menuItem.count}</p>
-          <button onClick={() => addCount(menuItem)}>+</button>
+        <div className="menuItem" key={uuidv4()}>
+          <div className="imgContainer">
+            <img src={menuItem.imageURL} alt="pic" />
+          </div>
+          <p className="menuItemName">{menuItem.name}</p>
+          <div className="menuButtons">
+            <p className="menuPrice">{menuItem.price} руб</p>
+            <button className="menuButtonMinus" onClick={() => removeCount(menuItem)}>
+              <svg
+                width="14"
+                height="2"
+                viewBox="0 0 14 2"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13 1H1"
+                  stroke="#F6E5D1"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                ></path>
+              </svg>
+            </button>
+            <p className="menuCount">{menuItem.count}</p>
+            <button className="menuButton" onClick={() => addCount(menuItem)}>
+              <svg
+                width="13"
+                height="12"
+                viewBox="0 0 13 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7 6H1M7 12V6V12ZM7 6V0V6ZM7 6H13H7Z"
+                  stroke="#F6E5D1"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                ></path>
+              </svg>
+            </button>
+          </div>
         </div>
       ))}
 
-      {/* <Link to="/payment">Перейти к оплате</Link> */}
+      <button className="paymentBtn">Перейти к оплате</button>
     </div>
   );
 }
